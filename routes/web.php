@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HolidayPlanController;
+use App\Http\Controllers\API\HolidayPlanControllerAPI;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/api');
 });

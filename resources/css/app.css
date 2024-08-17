@@ -1,0 +1,26 @@
+/*Style screen totaly*/
+.screen-style {
+    background-color: #030303;
+}
+
+
+/* Style navbar*/
+.navbar-style {
+    background-color: #ff0000;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.style-logo-navbar img {
+    height: 56px;
+    width: 210px;
+}
+
+.navbar-style a {
+    font-size: 30px;
+    padding: 10px 20px;
+}
+
+

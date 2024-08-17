@@ -11,6 +11,13 @@ use App\Http\Requests\HolidayPlanRequest;
 
 class HolidayPlanControllerAPI extends Controller
 {
+    public function index() {
+        // Tela inicial do projeto
+        response()->json([
+            'mensagem' => 'Esta é a resposta da rota principal da API!',
+        ]);
+        return view('index');
+    }
 
     public function store(HolidayPlanRequest $request): JsonResponse {
         // Adiciona holiday no banco de dados
@@ -41,5 +48,9 @@ class HolidayPlanControllerAPI extends Controller
 
     public function destroy(string $id) {
         // Apaga holiday do banco de dados
+    }
+
+    public function generatePDF(Request $request) {
+        // Funcao para gerar o pdf da holiday
     }
 }

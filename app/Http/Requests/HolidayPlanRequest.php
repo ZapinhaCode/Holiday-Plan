@@ -24,7 +24,7 @@ class HolidayPlanRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'date' => 'required|date_format:d-m-Y',
+            'date' => 'required|date_format:Y-m-d',
             'location' => 'required|string|max:255',
             'participants' => 'nullable',
         ];
@@ -36,7 +36,7 @@ class HolidayPlanRequest extends FormRequest
             'title.required' => 'The title is required.',
             'description.required' => 'The description is required.',
             'date.required' => 'The date is required.',
-            'date.date_format' => 'The date must be in the format DD-MM-YYYY.',
+            'date.date_format' => 'The date must be in the format YYYY-MM-DD.',
             'location.required' => 'The location is required.',
         ];
     }
