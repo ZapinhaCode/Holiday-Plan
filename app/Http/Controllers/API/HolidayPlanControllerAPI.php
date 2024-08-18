@@ -19,6 +19,10 @@ class HolidayPlanControllerAPI extends Controller
         return view('index');
     }
 
+    public function create() {
+        return view('add_holiday_plan');
+    }
+
     public function store(HolidayPlanRequest $request): JsonResponse {
         // Adiciona holiday no banco de dados
 
@@ -32,6 +36,11 @@ class HolidayPlanControllerAPI extends Controller
 
     public function show(string $id) {
         // Mostra holiday especifica na tela
+    }
+
+    public function edit($id) {
+        $holiday = HolidayPlan::findOrFail($id);
+        return view('update_holiday_plan');
     }
 
     public function update(HolidayPlanRequest $request, string $id): JsonResponse {

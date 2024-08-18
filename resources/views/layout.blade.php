@@ -11,11 +11,11 @@
 
     <body class="screen-style">    
         <nav class="navbar-style">
-            <a class="style-logo-navbar" href="{{ URL('/') }}"> <!-- Colocar o link que chama a tela principal -->
+            <a class="style-logo-navbar" href="{{ URL('/') }}">
                 <img src="{{ asset('images/buzzvel.png') }}" alt="BuzzvelLogo"/>
             </a>
 
-            <a style="color: white">Holiday Plan</a>
+            <a>Holiday Plan</a>
         </nav>
 
         @yield('content')

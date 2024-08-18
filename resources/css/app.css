@@ -3,6 +3,10 @@
     background-color: #030303;
 }
 
+.hover-screen{
+    background-color: #AFADAD;
+}
+
 
 /* Style navbar*/
 .navbar-style {
@@ -11,6 +15,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 25px !important;
 }
 
 .style-logo-navbar img {
@@ -21,6 +26,21 @@
 .navbar-style a {
     font-size: 30px;
     padding: 10px 20px;
+    color: white !important;
 }
 
+
+/* index.blade Screen */
+.align-button-right {
+    float: right !important;
+    margin-right: -20px !important;
+}
+
+.style-button {
+    background-color: #ff0000 !important;
+    color: white !important;
+    font-size: 19px !important;
+    border-radius: 25px !important;
+    margin-bottom: 40px !important;
+}
 
