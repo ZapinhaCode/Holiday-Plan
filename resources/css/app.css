@@ -44,3 +44,32 @@
     margin-bottom: 40px !important;
 }
 
+/*Register and update holiday screen */
+
+.title-screen {
+    color: white !important;
+    display: flex;
+    text-align: center !important;
+    margin-bottom: 40px !important;
+}
+
+.button-save-cancel {
+    margin-top: 40px !important;
+}
+
+.button-save-cancel div button {
+    background-color: #188b06 !important;
+    border-radius: 25px !important;
+    color: white !important;
+}
+
+.button-save-cancel div a {
+    background-color: #ff0000 !important;
+    border-radius: 25px !important;
+    color: white !important;
+}
+
+.color-label-auto label {
+    color: white !important;
+    margin-top: 40px !important;
+}
