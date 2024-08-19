@@ -2,7 +2,7 @@
     <div class="form-group row">
         <div class="col-sm-6">
             <label  for="title"><b>Title  <i class="fa-solid fa-file-lines"></i></b></label>
-            <input type="text" class="form-control form-control-lg" placeholder="Enter the title of your holiday" name="title" value="{{ isset($ferias) ? $ferias->titulo : old('title') }}">
+            <input type="text" class="form-control form-control-lg" placeholder="Enter the title of your holiday" name="title" value="{{ isset($holidayPlan) ? $holidayPlan->title : old('title') }}">
             {{-- @error('title')
                 <div class="text-danger">{{ $message }}</div>
             @enderror --}}
@@ -10,7 +10,7 @@
 
         <div class="col-sm-6">
             <label for="location"><b>Location  <i class="fa-solid fa-map-location-dot"></i></b></label>
-            <input type="text" placeholder="Enter the location of your vacation" class="form-control form-control-lg" name="location" value="{{ isset($ferias) ? $ferias->local_ferias : old('local_ferias') }}">
+            <input type="text" placeholder="Enter the location of your vacation" class="form-control form-control-lg" name="location" value="{{ isset($holidayPlan) ? $holidayPlan->location : old('location') }}">
             {{-- @error('location')
                 <div class="text-danger">{{ $message }}</div>
             @enderror --}}
@@ -20,7 +20,7 @@
     <div class="form-group row">
         <div class="col-sm-3">
             <label for="date"><b>Date  <i class="fa-solid fa-plane-departure"></i></b></label>
-            <input type="date" class="form-control form-control-lg" name="date" value="{{ isset($ferias) ? $ferias->date : old('date') }}">
+            <input type="date" class="form-control form-control-lg" name="date" value="{{ isset($holidayPlan) ? $holidayPlan->date->format('Y-m-d') : (old('date') ? \Carbon\Carbon::parse(old('date'))->format('Y-m-d') : '') }}">
             {{-- @error('date')
                 <div class="text-danger">{{ $message }}</div>
             @enderror --}}
@@ -28,7 +28,7 @@
 
         <div class="col-sm-9">
             <label for="participants"><b>Participants  <i class="fa-solid fa-users"></i></b></label>
-            <input type="text" placeholder="Enter the name of the participants (optional)" class="form-control form-control-lg" name="participants" value="{{ isset($ferias) ? $ferias->participants : old('participants') }}">
+            <input type="text" placeholder="Enter the name of the participants (optional)" class="form-control form-control-lg" name="participants" value="{{ isset($holidayPlan) ? $holidayPlan->participants : old('participants') }}">
             {{-- @error('participants')
                 <div class="text-danger">{{ $message }}</div>
             @enderror --}}
@@ -38,7 +38,7 @@
     <div class="form-group row">
         <div class="col-sm-12">
             <label for="description"><b>Description <i class="fa-solid fa-comment-medical"></i></b></label>
-            <textarea name="description" cols="30" rows="3" placeholder="Enter the holiday description" class="form-control form-control-lg" value="{{ isset($ferias) ? $ferias->description : old('description') }}"></textarea>
+            <textarea name="description" cols="30" rows="3" placeholder="Enter the holiday description" class="form-control form-control-lg">{{ isset($holidayPlan) ? $holidayPlan->description : old('description') }}</textarea>
         </div>
     </div>
 

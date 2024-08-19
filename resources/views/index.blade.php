@@ -39,7 +39,7 @@
                             <tr>
                                 <td class="text-center">{{ $holidayPlan->title }}</td>
                                 <td class="text-center">{{ $holidayPlan->description }}</td>
-                                <td class="text-center">{{ $holidayPlan->date }}</td>
+                                <td class="text-center">{{ \Carbon\Carbon::parse($holidayPlan->date)->format('Y-m-d') }}</td>
                                 <td class="text-center">
                                     <a class="d-inline-block" href="{{ route('holiday.edit', $holidayPlan->id) }}">
                                         <button class="btn btn-warning btn-sm" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>

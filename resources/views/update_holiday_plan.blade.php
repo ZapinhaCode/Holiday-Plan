@@ -11,7 +11,8 @@
     @endif
 
     <div class="container-fluid">
-        <form action="{{ route('holiday.update', $holidayPlan->id) }}" method="PUT">
+        <form action="{{ route('holiday.update', $holidayPlan->id) }}" method="POST">
+            @method('PUT')
             @csrf
             @include('form_holiday_plan')
         </form>
