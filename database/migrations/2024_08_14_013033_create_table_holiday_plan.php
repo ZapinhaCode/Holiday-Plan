@@ -4,14 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateTableHolidayPlan extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('holiday_plan', function (Blueprint $table) {
+        Schema::create('holiday_plans', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('description');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('holiday_plan');
+        Schema::dropIfExists('holiday_plans');
     }
 };

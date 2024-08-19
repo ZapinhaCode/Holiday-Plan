@@ -8,14 +8,20 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\HolidayPlan;
 use App\Http\Requests\HolidayPlanRequest;
+use Illuminate\Support\Facades\DB;
 
 class HolidayPlanControllerAPI extends Controller
 {
+    // private $holidayPlanRepository;
+
+    // public function __construct(HolidayPlanRepository $holidayPlanRepository) {
+    //     $this->holidayPlanRepository = $holidayPlanRepository;
+    // }
+
     public function index() {
         // Tela inicial do projeto
-        response()->json([
-            'mensagem' => 'Esta é a resposta da rota principal da API!',
-        ]);
+        // $holidayPlans = $this->holidayPlanRepository->allHolidays();
+        // dd($holidayPlans);
         return view('index');
     }
 
@@ -23,15 +29,28 @@ class HolidayPlanControllerAPI extends Controller
         return view('add_holiday_plan');
     }
 
-    public function store(HolidayPlanRequest $request): JsonResponse {
+    public function store(HolidayPlanRequest $request) {
         // Adiciona holiday no banco de dados
+        
+        DB::beginTransaction();
+        
+        try {
+                DB::commit();
+                $holidayPlan = $request->validated();
+                $holidayPlan = new HolidayPlan($request->all());
+                $holidayPlan->save();
 
-        $holidayPlan = HolidayPlan::create($request->validated());
+            response()->json([
+                'message' => 'Holiday Plan created successfully',
+                'data' => $holidayPlan,
+            ], 201);
+            
+            return redirect()->route('index')->with('sucesso', 'Success when creating your holidays');
 
-        return response()->json([
-            'message' => 'Holiday Plan created successfully',
-            'data' => $holidayPlan,
-        ], 201);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     public function show(string $id) {

@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-sm-9">
-            <label for="participants"><b>Participants  <i class="fa-solid fa-map-location-dot"></i></b></label>
+            <label for="participants"><b>Participants  <i class="fa-solid fa-users"></i></b></label>
             <input type="text" placeholder="Enter the name of the participants (optional)" class="form-control form-control-lg" name="participants" value="{{ isset($ferias) ? $ferias->participants : old('participants') }}">
             {{-- @error('participants')
                 <div class="text-danger">{{ $message }}</div>
