@@ -10,9 +10,6 @@ Route::get('/', [HolidayPlanControllerAPI::class, 'index'])->name('index');
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-// Route::get('/holiday/create', [HolidayPlanControllerAPI::class, 'create'])->name('holiday.add');
-// Route::post('/store', [HolidayPlanControllerAPI::class, 'store'])->name('holiday.save');
-
 Route::resource('holiday', HolidayPlanControllerAPI::class)->names([
     'index' => 'holiday.index',
     'create' => 'holiday.add',
