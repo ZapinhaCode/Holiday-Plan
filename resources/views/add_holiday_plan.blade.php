@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-md">
-    <h1 class="title-screen"><b>Register Holiday  <i class="fa-solid fa-calendar-plus"></i></b></h1>
+    <h1 class="title-screen"><b>Register Holiday Plan  <i class="fa-solid fa-calendar-plus"></i></b></h1>
 
     @if(session('error'))
         <div class="alert alert-danger">

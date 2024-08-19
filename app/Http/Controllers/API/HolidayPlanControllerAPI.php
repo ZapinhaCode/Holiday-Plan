@@ -3,26 +3,24 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\HolidayPlan;
 use App\Http\Requests\HolidayPlanRequest;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\HolidayPlanRepository;
 
 class HolidayPlanControllerAPI extends Controller
 {
-    // private $holidayPlanRepository;
+    private $holidayPlanRepository;
 
-    // public function __construct(HolidayPlanRepository $holidayPlanRepository) {
-    //     $this->holidayPlanRepository = $holidayPlanRepository;
-    // }
+    public function __construct(HolidayPlanRepository $holidayPlanRepository) {
+        $this->holidayPlanRepository = $holidayPlanRepository;
+    }
 
     public function index() {
-        // Tela inicial do projeto
-        // $holidayPlans = $this->holidayPlanRepository->allHolidays();
-        // dd($holidayPlans);
-        return view('index');
+        $holidayPlans = $this->holidayPlanRepository->allHolidays();
+        return view('index', compact('holidayPlans'));
     }
 
     public function create() {
@@ -58,8 +56,8 @@ class HolidayPlanControllerAPI extends Controller
     }
 
     public function edit($id) {
-        $holiday = HolidayPlan::findOrFail($id);
-        return view('update_holiday_plan');
+        $holidayPlan = HolidayPlan::findOrFail($id);
+        return view('update_holiday_plan', compact('holidayPlan'));
     }
 
     public function update(HolidayPlanRequest $request, string $id): JsonResponse {

@@ -23,7 +23,7 @@
         </div>
 
         <div class="container">
-            <table class="table table-striped table-hover style-table">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th class="text-center" width="20%">Title</th>
@@ -32,6 +32,39 @@
                         <th class="text-center" width="30%">Actions</th>
                     </tr>
                 </thead>
+
+                <tbody>
+                    @if (!empty($holidayPlans))
+                        @foreach ($holidayPlans as $holidayPlan)
+                            <tr>
+                                <td class="text-center">{{ $holidayPlan->title }}</td>
+                                <td class="text-center">{{ $holidayPlan->description }}</td>
+                                <td class="text-center">{{ $holidayPlan->date }}</td>
+                                <td class="text-center">
+                                    <a class="d-inline-block" href="{{ route('holiday.edit', $holidayPlan->id) }}">
+                                        <button class="btn btn-warning btn-sm" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    </a>
+
+                                    <a class="d-inline-block" href="#">
+                                        <button class="btn btn-primary btn-sm" title="Show"><i class="fa-solid fa-circle-exclamation"></i></button>
+                                    </a>
+
+                                    <a class="d-inline-block" href="#">
+                                        <button class="btn btn-secondary btn-sm" title="Generate PDF"><i class="fa-solid fa-file-pdf"></i></button>
+                                    </a>
+
+                                    <a class="d-inline-block" href="#">
+                                        <button class="btn btn-danger btn-sm" title="Delete"><i class="fa-regular fa-calendar-xmark"></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td class="text-center" colspan="4">No records were found</td>
+                        </tr>
+                    @endif
+                </tbody>
             </table>
         </div>
     </div>
