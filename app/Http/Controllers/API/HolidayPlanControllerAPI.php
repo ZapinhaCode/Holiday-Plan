@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\API\BaseController;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\HolidayPlan;
 use App\Http\Requests\HolidayPlanRequest;
+use App\Http\Resources\HolidayPlanResource;
 use Illuminate\Support\Facades\DB;
 
 class HolidayPlanControllerAPI extends Controller
@@ -14,11 +16,17 @@ class HolidayPlanControllerAPI extends Controller
 
     public function index() {
         $holidayPlans = HolidayPlan::all();
-        return view('index', compact('holidayPlans'));
+        
+        $holidayAPI = response()->json([
+            'message' => 'Holiday Plan created successfully',
+            'data' => $holidayPlans,
+        ], 201);
+
+        return view('pages.index', compact('holidayPlans'));
     }
 
     public function create() {
-        return view('add_holiday_plan');
+        return view('pages.add_holiday_plan');
     }
 
     public function store(HolidayPlanRequest $request) {
@@ -30,7 +38,7 @@ class HolidayPlanControllerAPI extends Controller
             $holidayPlan = new HolidayPlan($request->all());
             $holidayPlan->save();
             DB::commit();
-            return redirect()->route('index')->with('sucesso', 'Success when creating your holidays');
+            return redirect()->route('pages.index')->with('sucesso', 'Success when creating your holidays');
 
         } catch (\Exception $e) {
             DB::rollback();
@@ -40,12 +48,12 @@ class HolidayPlanControllerAPI extends Controller
 
     public function show($id) {
         $holidayPlan = HolidayPlan::findOrFail($id);
-        return view('show_holiday_plan', compact('holidayPlan'));
+        return view('pages.show_holiday_plan', compact('holidayPlan'));
     }
 
     public function edit($id) {
         $holidayPlan = HolidayPlan::findOrFail($id);
-        return view('update_holiday_plan', compact('holidayPlan'));
+        return view('pages.update_holiday_plan', compact('holidayPlan'));
     }
 
     public function update(HolidayPlanRequest $request, $id) {
@@ -56,7 +64,7 @@ class HolidayPlanControllerAPI extends Controller
             $holidayPlan = HolidayPlan::findOrFail($id);
             $holidayPlan->update($request->validated());    
             DB::commit();
-            return redirect()->route('index')->with('sucesso', 'Success when updated your holiday!');
+            return redirect()->route('pages.index')->with('sucesso', 'Success when updated your holiday!');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', $e->getMessage());
@@ -71,7 +79,7 @@ class HolidayPlanControllerAPI extends Controller
             $holidayPlan = HolidayPlan::findOrFail($id);
             $holidayPlan->delete();
             DB::commit();
-            return redirect()->route('index')->with('sucesso', 'Holiday successfully deleted!');
+            return redirect()->route('pages.index')->with('sucesso', 'Holiday successfully deleted!');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', $e->getMessage());

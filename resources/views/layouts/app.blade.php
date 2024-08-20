@@ -9,12 +9,13 @@
 
     </head>
 
-    <body class="screen-style">    
+    <body class="screen-style">
         <nav class="navbar-style">
-            <a class="style-logo-navbar" href="{{ URL('/') }}">
+            <a class="style-logo-navbar" href="{{ URL('/api') }}">
                 <img src="{{ asset('images/buzzvel.png') }}" alt="BuzzvelLogo"/>
             </a>
-
+            <a class="nav-link" href="{{ route('api.getRegister') }}">Register</a>
+            <a class="nav-link" href="{{ route('api.getLogin') }}">Login</a>
             <a>Holiday Plan</a>
         </nav>
 
@@ -22,3 +23,4 @@
         @vite(['resources/js/app.js'])
     </body>
 </html>
+

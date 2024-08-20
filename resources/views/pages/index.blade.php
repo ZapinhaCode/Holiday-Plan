@@ -1,11 +1,11 @@
-@extends('navbar.layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="container-md">
         <div class="container-fluid">
-            @if(session('sucesso'))
+            @if (session('sucesso'))
                 <div class="alert alert-success">
-                    <b class="text-body-secondary">{{ session('sucesso') }}</b>
+                    <b>{{ session('sucesso') }}</b>
                 </div>
             @elseif (session('error'))
                 <div class="alert alert-danger">

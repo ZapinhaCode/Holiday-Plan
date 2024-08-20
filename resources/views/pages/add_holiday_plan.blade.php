@@ -1,8 +1,8 @@
-@extends('navbar.layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="container-md">
-        <h1 class="title-screen"><b>Update Holiday Plan  <i class="fa-solid fa-calendar"></i></b></h1>
+        <h1 class="title-screen"><b>Register Holiday Plan  <i class="fa-solid fa-calendar-plus"></i></b></h1>
 
         @if(session('error'))
             <div class="alert alert-danger">
@@ -11,10 +11,9 @@
         @endif
 
         <div class="container-fluid">
-            <form action="{{ route('holiday.update', $holidayPlan->id) }}" method="POST">
-                @method('PUT')
+            <form action="{{ route('holiday.save') }}" method="POST">
                 @csrf
-                @include('form_holiday_plan')
+                @include('partials.form_holiday_plan')
             </form>
         </div>
     </div>
