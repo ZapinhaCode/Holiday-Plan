@@ -73,3 +73,18 @@
     color: white !important;
     margin-top: 40px !important;
 }
+
+
+/*table shoy holiday plan*/
+.custom-table .table-style {
+    width: 73%;
+    margin: 20px auto;
+    align-items: center !important;
+    font-size: 23px;
+}
+
+.custom-table .table-style th, 
+.custom-table .table-style td {
+    color: white !important;
+    border-bottom: 1px solid #ddd !important;
+}

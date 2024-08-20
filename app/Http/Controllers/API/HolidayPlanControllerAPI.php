@@ -8,18 +8,12 @@ use Carbon\Carbon;
 use App\Models\HolidayPlan;
 use App\Http\Requests\HolidayPlanRequest;
 use Illuminate\Support\Facades\DB;
-use App\Repositories\HolidayPlanRepository;
 
 class HolidayPlanControllerAPI extends Controller
 {
-    private $holidayPlanRepository;
-
-    public function __construct(HolidayPlanRepository $holidayPlanRepository) {
-        $this->holidayPlanRepository = $holidayPlanRepository;
-    }
 
     public function index() {
-        $holidayPlans = $this->holidayPlanRepository->allHolidays();
+        $holidayPlans = HolidayPlan::all();
         return view('index', compact('holidayPlans'));
     }
 
@@ -28,21 +22,14 @@ class HolidayPlanControllerAPI extends Controller
     }
 
     public function store(HolidayPlanRequest $request) {
-        // Adiciona holiday no banco de dados
         
         DB::beginTransaction();
         
         try {
-                DB::commit();
-                $holidayPlan = $request->validated();
-                $holidayPlan = new HolidayPlan($request->all());
-                $holidayPlan->save();
-
-            response()->json([
-                'message' => 'Holiday Plan created successfully',
-                'data' => $holidayPlan,
-            ], 201);
-            
+            $holidayPlan = $request->validated();
+            $holidayPlan = new HolidayPlan($request->all());
+            $holidayPlan->save();
+            DB::commit();
             return redirect()->route('index')->with('sucesso', 'Success when creating your holidays');
 
         } catch (\Exception $e) {
@@ -51,8 +38,9 @@ class HolidayPlanControllerAPI extends Controller
         }
     }
 
-    public function show(string $id) {
-        // Mostra holiday especifica na tela
+    public function show($id) {
+        $holidayPlan = HolidayPlan::findOrFail($id);
+        return view('show_holiday_plan', compact('holidayPlan'));
     }
 
     public function edit($id) {
@@ -60,20 +48,34 @@ class HolidayPlanControllerAPI extends Controller
         return view('update_holiday_plan', compact('holidayPlan'));
     }
 
-    public function update(HolidayPlanRequest $request, string $id): JsonResponse {
-        // Atualiza holiday especifica no banco de dados
+    public function update(HolidayPlanRequest $request, $id) {
 
-        $holidayPlan = HolidayPlan::findOrFail($id);
-        $holidayPlan->update($request->validated());
+        DB::beginTransaction();
 
-        return response()->json([
-            'message' => 'Holiday Plan updated successfully',
-            'data' => $holidayPlan,
-        ], 200);
+        try {
+            $holidayPlan = HolidayPlan::findOrFail($id);
+            $holidayPlan->update($request->validated());    
+            DB::commit();
+            return redirect()->route('index')->with('sucesso', 'Success when updated your holiday!');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
-    public function destroy(string $id) {
-        // Apaga holiday do banco de dados
+    public function destroy($id) {
+
+        DB::beginTransaction();
+
+        try {
+            $holidayPlan = HolidayPlan::findOrFail($id);
+            $holidayPlan->delete();
+            DB::commit();
+            return redirect()->route('index')->with('sucesso', 'Holiday successfully deleted!');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     public function generatePDF(Request $request) {

@@ -45,7 +45,7 @@
                                         <button class="btn btn-warning btn-sm" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
                                     </a>
 
-                                    <a class="d-inline-block" href="#">
+                                    <a class="d-inline-block" href="{{ route('holiday.show', $holidayPlan->id) }}">
                                         <button class="btn btn-primary btn-sm" title="Show"><i class="fa-solid fa-circle-exclamation"></i></button>
                                     </a>
 
@@ -53,9 +53,11 @@
                                         <button class="btn btn-secondary btn-sm" title="Generate PDF"><i class="fa-solid fa-file-pdf"></i></button>
                                     </a>
 
-                                    <a class="d-inline-block" href="#">
+                                    <form action="{{ route('holiday.destroy', $holidayPlan->id) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">
+                                        @csrf
+                                        @method('delete')
                                         <button class="btn btn-danger btn-sm" title="Delete"><i class="fa-regular fa-calendar-xmark"></i></button>
-                                    </a>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
