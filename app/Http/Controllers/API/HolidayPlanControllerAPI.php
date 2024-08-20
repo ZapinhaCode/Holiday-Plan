@@ -77,8 +77,4 @@ class HolidayPlanControllerAPI extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
-
-    public function generatePDF(Request $request) {
-        // Funcao para gerar o pdf da holiday
-    }
 }

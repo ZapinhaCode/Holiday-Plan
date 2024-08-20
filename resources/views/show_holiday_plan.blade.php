@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('navbar.layout')
 
 @section('content')
     <div class="container-md">
@@ -24,7 +24,7 @@
     
                     <tr>
                         <th class="text-center">Participants  <i class="fa-solid fa-users"></i></th>
-                        <td class="text-center">{{ $holidayPlan->participants }}</td>
+                        <td class="text-center">{{ $holidayPlan->participants == null ? 'No participant has been registered.' : $holidayPlan->participants }}</td>
                     </tr>
     
                     <tr>

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('navbar.layout')
 
 @section('content')
     <div class="container-md">
@@ -49,7 +49,7 @@
                                         <button class="btn btn-primary btn-sm" title="Show"><i class="fa-solid fa-circle-exclamation"></i></button>
                                     </a>
 
-                                    <a class="d-inline-block" href="#">
+                                    <a class="d-inline-block" href="{{ route('holiday.generatePDF', $holidayPlan->id) }}">
                                         <button class="btn btn-secondary btn-sm" title="Generate PDF"><i class="fa-solid fa-file-pdf"></i></button>
                                     </a>
 
