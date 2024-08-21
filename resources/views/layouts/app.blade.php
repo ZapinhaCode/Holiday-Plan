@@ -11,11 +11,11 @@
 
     <body class="screen-style">
         <nav class="navbar-style">
-            <a class="style-logo-navbar" href="{{ URL('/api') }}">
+            <a class="style-logo-navbar" href="{{ URL('/api/holiday') }}">
                 <img src="{{ asset('images/buzzvel.png') }}" alt="BuzzvelLogo"/>
             </a>
-            <a class="nav-link" href="{{ route('api.getRegister') }}">Register</a>
-            <a class="nav-link" href="{{ route('api.getLogin') }}">Login</a>
+            {{-- <a class="nav-link" href="{{ route('api.getRegister') }}">Register</a>
+            <a class="nav-link" href="{{ route('api.getLogin') }}">Login</a> --}}
             <a>Holiday Plan</a>
         </nav>
 

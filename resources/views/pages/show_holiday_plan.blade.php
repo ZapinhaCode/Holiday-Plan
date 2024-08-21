@@ -37,7 +37,7 @@
 
         <div class="form-group row button-save-cancel">
             <div class="col-sm-12" style="text-align: right">
-                <a href="{{ route('index') }}" class="btn btn-effect-ripple btn-lg"><i class="fa-solid fa-arrow-right"></i> Back</a>
+                <a href="{{ route('holiday.index') }}" class="btn btn-effect-ripple btn-lg"><i class="fa-solid fa-arrow-right"></i> Back</a>
             </div>
         </div>    
     </div>

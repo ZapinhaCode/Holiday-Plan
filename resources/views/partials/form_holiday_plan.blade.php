@@ -45,7 +45,7 @@
     <div class="form-group row button-save-cancel">
         <div class="col-sm-12" style="text-align: center">
             <button class="btn btn-lg " type="submit"><i class="fa-solid fa-check"></i> Save</button>
-            <a href="{{ route('index') }}" class="btn btn-effect-ripple btn-lg"><i class="fa-solid fa-arrow-right"></i> Cancel</a>
+            <a href="{{ route('holiday.index') }}" class="btn btn-effect-ripple btn-lg"><i class="fa-solid fa-arrow-right"></i> Cancel</a>
         </div>
     </div>
 </div>
